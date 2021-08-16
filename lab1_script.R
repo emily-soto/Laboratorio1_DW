@@ -1,0 +1,45 @@
+################### Problema 1 ###################
+
+### Cargar librerías
+library(readxl)
+library(lubridate)
+library(readr)
+
+### Cargar los archivos
+enero <- data.frame(read_excel("Laboratorio_1/01-2018.xlsx"),fecha="2018-01-01") 
+feb <- data.frame(read_excel("Laboratorio_1/02-2018.xlsx"),fecha="2018-02-01") 
+marzo <- data.frame(read_excel("Laboratorio_1/03-2018.xlsx"),fecha="2018-03-01") 
+abril <- data.frame(read_excel("Laboratorio_1/04-2018.xlsx"),fecha="2018-04-01") 
+mayo <- data.frame(read_excel("Laboratorio_1/05-2018.xlsx"),fecha="2018-05-01") 
+jun <- data.frame(read_excel("Laboratorio_1/06-2018.xlsx"),fecha="2018-06-01") 
+jul <- data.frame(read_excel("Laboratorio_1/07-2018.xlsx"),fecha="2018-07-01")
+jul <- jul[,-(9)] 
+ago <- data.frame(read_excel("Laboratorio_1/08-2018.xlsx"),fecha="2018-08-01") 
+ago <- ago[,-(9:10)] 
+sept<- data.frame(read_excel("Laboratorio_1/09-2018.xlsx"),fecha="2018-09-01")
+sept <- sept[,-(9)] 
+oct <- data.frame(read_excel("Laboratorio_1/10-2018.xlsx"),fecha="2018-10-01")
+oct <- oct[,-(9)] 
+nov <- data.frame(read_excel("Laboratorio_1/11-2018.xlsx"),fecha="2018-11-01")
+nov <- nov[,-(9)] 
+
+### unir los dataframes
+
+df_final=rbind(enero, feb, marzo,abril,mayo,jun,jul,ago,sept,oct,nov)
+
+### Exportar df
+write.csv(df_final,"df_final.csv", row.names = TRUE)
+
+################### Problema 2 ###################
+lista=list(vect1=c(0,1,2,3,4,5,5,7,8,9), vect2=c(1,1,1,2,2,2,3,3,3), vect3=c(30,80,20,50,57,87,87,67,34))
+moda <- function(x) {
+  val_unicos <- unique(x)
+  val_unicos[which.max(tabulate(match(x, val_unicos)))]
+}
+
+lapply(lista, moda)
+
+################### Problema 3 ###################
+download.file(url="https://portal.sat.gob.gt/portal/descarga/4801/analisis-estadistico-del-parque-vehicular/42399/informacion_para_analisis_estadistico_vehiculos_2019_diciembre.zip", destfile = "parque2019.zip")
+unzip("parque2019.zip")
+parque2019=read_delim("INE_PARQUE_VEHICULAR_080120.txt",delim = "|")
