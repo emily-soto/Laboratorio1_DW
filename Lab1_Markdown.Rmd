@@ -5,7 +5,7 @@ date: "15/8/2021"
 output: rmarkdown::github_document
 ---
 
-##Cargar librería
+## Cargar librería
 
 ```{r}
 library(readxl)
@@ -13,8 +13,8 @@ library(lubridate)
 library(readr)
 ```
 
-#Problema 1
-##Cargar archivos
+# Problema 1
+## Cargar archivos
 ```{r}
 enero <- data.frame(read_excel("Laboratorio_1/01-2018.xlsx"),fecha="2018-01-01") 
 feb <- data.frame(read_excel("Laboratorio_1/02-2018.xlsx"),fecha="2018-02-01") 
@@ -34,17 +34,17 @@ nov <- data.frame(read_excel("Laboratorio_1/11-2018.xlsx"),fecha="2018-11-01")
 nov <- nov[,-(9)] 
 ```
 
-##Unir dataframes
+## Unir dataframes
 ```{r}
 df_final=rbind(enero, feb, marzo,abril,mayo,jun,jul,ago,sept,oct,nov)
 head(df_final)
 ```
-##Exportar dataframe
+## Exportar dataframe
 ```{r}
 write.csv(df_final,"df_final.csv", row.names = TRUE)
 ```
 
-#Problema 2
+# Problema 2
 ```{r}
 lista=list(vect1=c(0,1,2,3,4,5,5,7,8,9), vect2=c(1,1,1,2,2,2,3,3,3), vect3=c(30,80,20,50,57,87,87,67,34))
 lista
@@ -59,8 +59,8 @@ moda <- function(x) {
 ```{r}
 lapply(lista, moda)
 ```
-#Problema 3
-##Descargar y extraer archivos
+# Problema 3
+## Descargar y extraer archivos
 ```{r}
 download.file(url="https://portal.sat.gob.gt/portal/descarga/4801/analisis-estadistico-del-parque-vehicular/42399/informacion_para_analisis_estadistico_vehiculos_2019_diciembre.zip", destfile = "parque2019.zip")
 ```
@@ -69,7 +69,7 @@ download.file(url="https://portal.sat.gob.gt/portal/descarga/4801/analisis-estad
 ```{r}
 unzip("parque2019.zip")
 ```
-##Cargar archivo
+## Cargar archivo
 ```{r}
 parque2019=read_delim("INE_PARQUE_VEHICULAR_080120.txt",delim = "|")
 head(parque2019)
